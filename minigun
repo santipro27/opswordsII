@@ -1,0 +1,51 @@
+using System;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+using Terraria.Localization;
+
+namespace opswordsII.Items.Ranger
+{
+	public class minigun: ModItem
+	{
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("mini/gun");
+			DisplayName.AddTranslation(GameCulture.Russian, "мини / пистолет");
+			DisplayName.AddTranslation(GameCulture.Chinese, "迷你/枪");
+			Tooltip.SetDefault("una pistola pequeña.");
+		}
+		public override void SetDefaults()
+		{
+        item.damage = 30;
+        item.ranged = true;
+        item.width =8; //Tamaño de Ancho
+        item.height = 2; //Tamaño de Alto
+        item.useTime = 30; //mientras mas alto sea el useTime mas lenta será el arma. Usa un bajo UseTime para que el arma sea Rapida
+        item.useAnimation = 20;
+        item.useStyle = 5; //Dejar en 5 para que el personaje use el arma de forma normal
+        item.noMelee = true;
+        item.knockBack = 5;
+        item.value = 1000000; //Precio
+        item.rare = 1;
+		item.UseSound = SoundID.Item38;
+        item.autoReuse = false;
+        item.shoot = 10;
+        item.shootSpeed = 2f;
+        item.useAmmo = AmmoID.Bullet;
+		}
+            public override Vector2? HoldoutOffset()
+		{
+			return new Vector2(-10, 0);
+		}
+		public override void AddRecipes()
+		{
+			ModRecipe recipe = new ModRecipe(mod);
+			recipe.AddIngredient(ItemID.FlintlockPistol, 2);
+			recipe.AddTile(TileID.WorkBenches);
+			recipe.SetResult(this);
+			recipe.AddRecipe();
+		}
+	}
+}
